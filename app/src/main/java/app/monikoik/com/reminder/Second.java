@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -25,6 +26,8 @@ public class Second extends Activity {
     TimePicker myTimePick;
     Button buttonStartSetDialog;
     TextView textAlarmPrompt;
+    ArrayList<PendingIntent> intentArray;
+    int i;
 
     TimePickerDialog timePickerDialog;
 
@@ -73,16 +76,31 @@ public class Second extends Activity {
                 Log.i("hasil", "else");
             }
 
-            setAlarm(calSet);
+            intentArray = new ArrayList<PendingIntent>();
+            AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+            for(i=0;i<10;i++){
+                textAlarmPrompt.setText("***\n" + "Alarm set on " + calSet.getTime() + "***" );
+                Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),i, intent, 0);
+                alarmManager.set(alarmManager.ELAPSED_REALTIME_WAKEUP,calSet.getTimeInMillis() + 60000 * i,pendingIntent);
+                intentArray.add(pendingIntent);
+            }
+
+            /*for(i = 0; i< 10; ++i)
+            {
+                setAlarm(calSet,i,intentArray);
+            }*/
         }
     };
 
-    private void setAlarm(Calendar targetCal) {
+    /*private void setAlarm(Calendar targetCal,int requestAlarm,ArrayList<PendingIntent> list) {
         textAlarmPrompt.setText("***\n" + "Alarm set on " + targetCal.getTime() + "***" );
         Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),RQS_1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),requestAlarm, intent, 0);
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(alarmManager.RTC_WAKEUP,targetCal.getTimeInMillis(),pendingIntent);
-    }
+        list.add(pendingIntent);
+    }*/
 
 }
