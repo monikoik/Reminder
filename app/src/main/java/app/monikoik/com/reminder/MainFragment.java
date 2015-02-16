@@ -26,23 +26,24 @@ import java.util.Arrays;
 public class MainFragment extends Fragment {
 
     private UiLifecycleHelper uiHelper;
-    private LoginButton authButton;
+    //private LoginButton authButton;
     private static final String TAG = "MainFragment";
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.activity_first, container, false);
-        authButton = (LoginButton) view.findViewById(R.id.authButton);
-        authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("user_status"));
+        super.onCreateView(inflater,container,savedInstanceState);
+        View view = inflater.inflate(R.layout.selection, container, false);
+        //authButton = (LoginButton) view.findViewById(R.id.authButton);
+        //authButton.setFragment(this);
+        //authButton.setReadPermissions(Arrays.asList("user_status"));
         //authButton.setReadPermissions(Array.asList("user_likes","user_status"));
 
         return view;
     }
 
-    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+    /*private void onSessionStateChange(Session session, SessionState state, Exception exception) {
         if (state.isOpened()) {
             Log.d(TAG, "Logged in...");
         } else if (state.isClosed()) {
@@ -106,5 +107,5 @@ public class MainFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         uiHelper.onSaveInstanceState(outState);
-    }
+    }*/
 }

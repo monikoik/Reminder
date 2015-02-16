@@ -8,5 +8,11 @@
     <string name="title_activity_second">Reminder</string>
     <string name="myAlarm">Alarm Reminder</string>
     <string name="settingAlarm"> Set Alarm</string>
+    <string name="title_activity_job_scheduler">JobScheduler</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro_message">Hai</string>
+    <string name="sample_action">Set Alarm</string>
+    <string name="log_in">Log in</string>
+    <string name="get_started">To get started, log in using Facebook</string>
 
 </resources>

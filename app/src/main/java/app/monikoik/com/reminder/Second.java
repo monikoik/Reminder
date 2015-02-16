@@ -23,7 +23,6 @@ import java.util.Calendar;
 
 public class Second extends Activity {
 
-    TimePicker myTimePick;
     Button buttonStartSetDialog;
     TextView textAlarmPrompt;
     ArrayList<PendingIntent> intentArray;
